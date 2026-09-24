@@ -192,7 +192,9 @@ Before calling `POST /orders/:id/resolution/release`:
 Protect against double-releases caused by network retries:
 
 ```typescript
-const idempotentClient = offerHubClient.withIdempotencyKey(`release:${orderId}:${buyerId}`);
+const idempotentClient = offerHubClient.withIdempotencyKey(
+  '550e8400-e29b-41d4-a716-446655440003'
+);
 await idempotentClient.orders.release(orderId, 'Buyer approved release');
 ```
 

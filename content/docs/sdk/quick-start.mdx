@@ -129,18 +129,24 @@ For safe retries, use idempotency keys:
 
 ```typescript
 // Create SDK instance with idempotency key
-const idempotentSdk = sdk.withIdempotencyKey('unique-operation-key');
+const idempotentSdk = sdk.withIdempotencyKey(
+  '550e8400-e29b-41d4-a716-446655440000'
+);
 
 // This request can be safely retried
 const order = await idempotentSdk.orders.create({
-  buyerId: 'usr_buyer',
-  sellerId: 'usr_seller',
+  buyer_id: 'usr_buyer',
+  seller_id: 'usr_seller',
   amount: '100.00',
   title: 'Service'
 });
 ```
 
 If you retry with the same idempotency key, you get the same response without creating a duplicate.
+The key must be a UUID v4. It is optional, applies to `POST`, `PUT`, and
+`PATCH` requests, and is scoped to the API key and request body. A replayed
+response includes `Idempotency-Replay: true`; a different body with the same
+key returns `409 IDEMPOTENCY_KEY_REUSED`.
 
 ## Error Handling
 

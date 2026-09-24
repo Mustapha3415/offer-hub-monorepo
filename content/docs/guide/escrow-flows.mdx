@@ -106,7 +106,7 @@ flowchart LR
 ```bash
 curl -X POST http://localhost:4000/api/v1/orders/ord_xyz789/escrow/fund \
   -H "Authorization: Bearer ohk_live_your_api_key" \
-  -H "Idempotency-Key: fund-ord_xyz789-001"
+  -H "Idempotency-Key: 550e8400-e29b-41d4-a716-446655440001"
 ```
 
 ### TypeScript SDK
@@ -192,7 +192,7 @@ flowchart LR
 curl -X POST http://localhost:4000/api/v1/orders/ord_xyz789/resolution/release \
   -H "Authorization: Bearer ohk_live_your_api_key" \
   -H "Content-Type: application/json" \
-  -H "Idempotency-Key: release-ord_xyz789-001" \
+  -H "Idempotency-Key: 550e8400-e29b-41d4-a716-446655440002" \
   -d '{"requestedBy": "usr_buyer123"}'
 ```
 
